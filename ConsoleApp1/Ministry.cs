@@ -61,10 +61,15 @@ namespace ConsoleApp1
 
         public List<School> Analyze(Func<School, bool> selector)
         {
-            var resLinq = ListSchool
-                .Where(selector)
-                .ToList();
-            return resLinq;
+            //var resLinq = ListSchool
+            //    .Where(selector)
+            //    .ToList();
+            //return resLinq;
+            var res = new List<School>();
+            foreach (var s in ListSchool)
+                if (selector(s))
+                    res.Add(s);
+            return res;
         }
 
         private int FindSum(School school)

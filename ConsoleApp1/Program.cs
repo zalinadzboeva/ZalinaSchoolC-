@@ -45,18 +45,41 @@ namespace ConsoleApp16
             Console.WriteLine(studBagaev);
 
             School school = new School("ФизМат");
+            Student stud5 = new Student("Абаев Георгий", 7, 5);
+            school.Add(stud5);
             school.Add(studA);
             school.Add(studB);
             school.Add(studAbaev);
             school.Add(studBagaev);
             Console.WriteLine(school);
-            var m = new Ministry();
-            m.AddSchool(school);
-            Console.WriteLine(m);
 
-            m.Analyze();
-            m.Analyze(FilterHonors);
-            m.Analyze(FilterLoser);
+
+            var m = new Ministry();
+
+            m.AddSchool(school);
+
+            School school1 = new School("40 учеников");
+            for (int i = 0; i < 40; i++)
+            {
+                Student student = new Student();
+                school1.Add(student);
+            }
+            Student student5 = new Student("Дзбоева Залина", 8, 5);
+            school1.Add(student5);
+            m.AddSchool(school1);
+            foreach (var e in m.Analyze())
+            {
+                Console.WriteLine(e);
+            }
+            foreach (var e in m.Analyze(FilterHonors))
+            {
+                Console.WriteLine(e);
+            }
+
+            foreach (var e in m.Analyze(FilterLoser))
+            {
+                Console.WriteLine(e.Name);
+            }
         }
     }
 }
