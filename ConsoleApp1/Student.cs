@@ -17,10 +17,10 @@ namespace ConsoleApp1
 
         public Student()
         {
-            FIO = Convert.ToChar('A' + counter).ToString();
+            FIO = Convert.ToChar('A' + counter % 26).ToString();
             Grade = new Random().Next(1, 12);
             Performance = new Random().Next(0, 3);
-
+            Stages();
             counter = counter + 1;
 
         }
@@ -30,6 +30,9 @@ namespace ConsoleApp1
             FIO = fio;
             Grade = grade;
             Performance = performance;
+            Stages();
+        }
+        public EducationLevel Stages(){
             if (Grade <= 4)
             {
                 Stage = EducationLevel.Elementary;
@@ -42,6 +45,7 @@ namespace ConsoleApp1
             {
                 Stage = EducationLevel.Higher;
             }
+            return Stage;
         }
 
         public void Pass()
@@ -49,18 +53,7 @@ namespace ConsoleApp1
             if (Grade < 11)
             {
                 Grade++;
-                if (Grade <= 4)
-                {
-                    Stage = EducationLevel.Elementary;
-                }
-                else if (Grade <= 8)
-                {
-                    Stage = EducationLevel.Secondary;
-                }
-                else
-                {
-                    Stage = EducationLevel.Higher;
-                }
+                Stages();
             }
         }
         public override string ToString()
@@ -68,9 +61,9 @@ namespace ConsoleApp1
             string stage = "";
             if (EducationLevel.Elementary == Stage)
             {
-                stage = "младшая ";
+                stage = "младшая";
             }
-            else if (EducationLevel.Elementary == Stage)
+            else if (EducationLevel.Secondary == Stage)
             {
                 stage = "средняя ";
             }
